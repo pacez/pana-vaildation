@@ -5,89 +5,78 @@
         <meta name="description" content="'">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>baby view</title>
-        <link rel="stylesheet" href="../../../misc/css/common.css">
-        <link rel="stylesheet" href="../../../misc/css/channel/bady.css">
-        <script type="text/javascript">
-            var pageConfig={
-                dev_mode:false
-            }
-        </script>
-        <script type="text/javascript" src="../../../misc/script/lib/require.js" data-main="../../../misc/script/app/channel/bady.js"></script>
-        <script type="text/javascript" src="../../../misc/script/app/channel/baby/main.js"></script>
+        <link rel="stylesheet" href="vaildation.css">
+        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="pana-validation.js"></script>
+        <script type="text/javascript" src="main.js"></script>
     </head>
     <body>
-        <div class="header"></div>
-        <div class="container">
-        	<div class="left main_left_container">
-        		<div class="panel-grid">
-                    <form id="form1">
-            			<table class="panel-grid-table">
-            				<tbody>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">*真实姓名:</th>
-            						<td class="panel-grid-value form-item">
-                                        <div class="panel-grid-input-container"><input type="text" data-name="真实姓名" name="realName" class="panel-grid-input"  /></div>
-                                    </td>
-            					</tr>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">*性别:</th>
-            						<td class="panel-grid-value form-item">
-            							<label class="panel-grid-radio">
-            								<input name="sexy" type="radio" value="man"  />
-            								<span class="panel-grid-radio-label">男</span>
-            							</label>
-            							<label class="panel-grid-radio">
-            								<input name="sexy" type="radio" value="woman"  />
-            								<span class="panel-grid-radio-label">女</span>
-            							</label>
-            						</td>
-            					</tr>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">*身份证号:</th>
-            						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="idCard" data-name="身份证号" type="text" class="panel-grid-input"  /></div></td>
-            					</tr>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">*Email邮箱:</th>
-            						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="email" data-name="邮箱" type="text" class="panel-grid-input"  /></div></td>
-            					</tr>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">*收货地址:</th>
-            						<td class="panel-grid-value form-item">
-                                        <select name="state" data-name="省份">
-                                            <option value="unselected">请选择城市</option>
-                                            <option value="cd">四川</option>
-                                        </select>
-                                        <select name="city" data-name="城市">
-                                            <option value="unselected">请选择城市</option>
-                                            <option value="cd">成都</option>
-                                        </select>
-                                        <div class="panel-grid-input-container">
-                                            <input type="text" name="address" data-name="收货地址" class="panel-grid-input"  />
-                                        </div>
-                                    </td>
-            					</tr>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">邮编:</th>
-            						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="zipCode" data-name="邮编" type="text" class="panel-grid-input"  /></div></td>
-            					</tr>
-            					<tr class="panel-grid-row">
-            						<th class="panel-grid-field">*宝贝生日(或预产期):</th>
-            						<td class="panel-grid-value form-item">
-            						<div class="panel-grid-input-container"><input type="text" data-name="宝贝生日(或预产期)" name="birthday" class="panel-grid-input"  /></div>
-            						    <label class="panel-grid-checkboxs">
-                                            <input name="hasBaby" data-name="是否有宝宝" value=""  type="checkbox" />
-                                            <span class="panel-grid-checkboxs-label"> *暂无宝宝</span>
-                                        </label>    
-            						</td>
-            					</tr>
-            				</tbody>
-            			</table>
-                        <input type="submit" value="提交"/>
-                    </form>
-        		</div>
-        	</div>
-        	<div class="right main_right">right</div>
-        </div>
-        <div class="footer"></div>
+        <form id="form1">
+			<table class="panel-grid-table">
+				<tbody>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*真实姓名:</th>
+						<td class="panel-grid-value form-item">
+                            <div class="panel-grid-input-container"><input type="text" data-name="真实姓名" name="realName" class="panel-grid-input"  /></div>
+                        </td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*性别:</th>
+						<td class="panel-grid-value form-item">
+							<label class="panel-grid-radio">
+								<input name="sexy" data-name="性别" type="radio" value="man"  />
+								<span class="panel-grid-radio-label">男</span>
+							</label>
+							<label class="panel-grid-radio">
+								<input name="sexy" type="radio" value="woman"  />
+								<span class="panel-grid-radio-label">女</span>
+							</label>
+						</td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*身份证号:</th>
+						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="idCard" data-name="身份证号" type="text" class="panel-grid-input"  /></div></td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*Email邮箱:</th>
+						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="email" data-name="邮箱" type="text" class="panel-grid-input"  /></div></td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*收货地址:</th>
+						<td class="panel-grid-value form-item">
+                            <select name="state" data-name="省份">
+                                <option value="unselected">请选择城市</option>
+                                <option value="cd">四川</option>
+                            </select>
+                            <select name="city" data-name="城市">
+                                <option value="unselected">请选择城市</option>
+                                <option value="cd">成都</option>
+                            </select>
+                            <div class="panel-grid-input-container">
+                                <input type="text" name="address" data-name="收货地址" class="panel-grid-input"  />
+                            </div>
+                        </td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">邮编:</th>
+						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="zipCode" data-name="邮编" type="text" class="panel-grid-input"  /></div></td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*宝贝生日(或预产期):</th>
+						<td class="panel-grid-value form-item">
+						    <div class="panel-grid-input-container"><input type="text" data-name="宝贝生日(或预产期)" name="birthday" class="panel-grid-input"  /></div>
+						    <label class="panel-grid-checkboxs">
+                                <input name="hasBaby" data-name="是否有宝宝" value=""  type="checkbox" />
+                                <span class="panel-grid-checkboxs-label"> *暂无宝宝</span>
+                            </label>    
+						</td>
+					</tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="submit" value="提交"/></td>
+                    </tr>
+				</tbody>
+			</table>
+        </form>
     </body>
 </html>

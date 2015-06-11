@@ -1,5 +1,5 @@
-require(["../../lib/jquery","../common/validate"],function($,Validate) {
-    Validate.init({
+$(function(){
+    vaildation.init({
         formId: 'form1',
         submit: false,
         success: function(){
@@ -73,5 +73,5 @@ require(["../../lib/jquery","../common/validate"],function($,Validate) {
                 }
             }
         ]
-    });
+    }); 
 });
