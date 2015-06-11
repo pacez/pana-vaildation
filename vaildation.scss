@@ -1,0 +1,24 @@
+html,body {
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+}
+table {
+	width: 400px;
+	margin: 30px auto;
+	th,td {
+		padding: 3px 3px;
+		vertical-align: top;
+		line-height: 24px;
+	}
+}
+
+
+.form-item {
+	.form-item-explain {
+		&.form-item-explain-error {
+			color: red;
+		}
+	}
+}
+

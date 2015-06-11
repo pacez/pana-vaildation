@@ -1,0 +1,16 @@
+html, body {
+  font-size: 12px;
+  padding: 0;
+  margin: 0; }
+
+table {
+  width: 400px;
+  margin: 30px auto; }
+  table th, table td {
+    vertical-align: top;
+    line-height: 24px; }
+
+.form-item .form-item-explain.form-item-explain-error {
+  color: red; }
+
+/*# sourceMappingURL=vaildation.css.map */
