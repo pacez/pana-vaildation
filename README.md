@@ -5,6 +5,7 @@ validation framework for you.jd.com
 
 ```javascript
 /*
+【集成到libra后的依赖关系描述】: jquery, constant(error msg会放在此处), site(异步校验会接口来源) 
 目前checkbox,radio,select仅支持required校验。有更多校验场景时，请提出你的需求。
 */
 vaildation.init({
