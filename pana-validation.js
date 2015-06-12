@@ -64,7 +64,7 @@ var vaildation={
 							success: function(msg){
 								if(msg.success){
 								 	apijaxTempCount+=1;
-								 	if(ajaxTempCount===ajaxCount){
+								 	if(ajaxTempCount>=ajaxCount){
 										allSuccess();
 									}
 								}else{
@@ -83,7 +83,7 @@ var vaildation={
 							success: function(data){
 								if(data.success){
 								 	apijaxTempCount+=1;
-								 	if(ajaxTempCount===ajaxCount){
+								 	if(ajaxTempCount>=ajaxCount){
 										allSuccess();
 									}
 								}else{
