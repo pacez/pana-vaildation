@@ -2,18 +2,6 @@
 author: pace zhong
 date: 2015-06-10
 desc: validation framework for you.jd.com
-usage: 
-validtion.init({
-	formId: formId, // 表单id
-	msg: {key: value}, //可缺省
-	rules: [
-		{selector:'', rule: {} }
-	]
-	trigger: "submit",
-	submit: boole, //验证通过是否提交表单,
-	success: fn($form), //表单验证通过回调
-});
-.form-item:　输入元素每节点
 */
 var vaildation={ 
 	init: function (options){
