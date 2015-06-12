@@ -78,7 +78,7 @@ var vaildation={
 							}
 						})
 
-						/*
+						/* 
 						Site.api.getVaildResult(ajaxQueue[i]['url'],data,
 							success: function(data){
 								if(data.success){
