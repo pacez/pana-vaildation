@@ -12,13 +12,19 @@ $(function(){
                     rangeLength: {
                         minLength: 1,
                         maxLength: 10
+                    },
+                    ajax:　{
+                        url: 'http://www.baidu.com'
                     }
                 }
             },
             {
                 selector: 'input[name="minLength"]',
                 rule: {
-                    minLength: 6
+                    minLength: 6,
+                    ajax:　{
+                        url: 'http://www.sina.com'
+                    }
                 }
             },
             {
@@ -73,12 +79,14 @@ $(function(){
             {
                 selector: 'input[name="email"]',
                 rule: {
+                    required: true,
                     email: true
                 }
             },
             {
                 selector: 'input[name="idCard"]',
                 rule: {
+                    required: true,
                     idCard: true
                 }
             },

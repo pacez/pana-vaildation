@@ -37,8 +37,8 @@ var vaildation={
 		
 		$form.on("submit",function(e){
 			e.preventDefault();
-			
-			if(that.validForm(rules,options)){
+			var ajaxTempCount=0;
+			var allSuccess=function(){
 				if(typeof options.success ==="function"){
 					options.success($form);
 				}
@@ -46,6 +46,65 @@ var vaildation={
 					this.submit();
 				}
 			}
+
+			if(that.validForm(rules,options)){
+				var ajaxQueue=that.ajaxQueue;
+				//是否存在异步校验队列
+				if(ajaxQueue.length>0){
+					var ajaxCount=ajaxQueue.length;
+					for(var i=0; i<ajaxCount; i++){
+						var data={},$elem=$(ajaxQueue[i]['selector']);
+						data[ajaxQueue[i].dataname]=ajaxQueue[i].value;
+						$elem.addClass("checking");
+
+						$.ajax({
+							elem: ajaxQueue[i]['selector'],
+							url: ajaxQueue[i].url,
+							data: data,
+							success: function(msg){
+								if(msg.success){
+								 	apijaxTempCount+=1;
+								 	if(ajaxTempCount===ajaxCount){
+										allSuccess();
+									}
+								}else{
+									//校验失败
+									that.showError('ajax',options,$elem,"form-item-explain-error",undefined,"校验失败");
+								}
+							},
+							error: function(){
+								//校验失败
+								that.showError('ajax',options,$(this.elem),"form-item-explain-error",undefined,$(this.elem).data('name')+"校验失败");
+							}
+						})
+
+						/*
+						Site.api.getVaildResult(ajaxQueue[i]['url'],data,
+							success: function(data){
+								if(data.success){
+								 	apijaxTempCount+=1;
+								 	if(ajaxTempCount===ajaxCount){
+										allSuccess();
+									}
+								}else{
+									//中断
+									that.showError($elem,"校验失败","form-item-explain-error");
+								}
+						 	},
+						 	error: function(data, xhr, textStatus, errorThrown, btnHelper){
+						 		//校验失败，抛出错误
+								that.showError($elem,"校验失败","form-item-explain-error");
+						 	}
+		        }
+		        */
+					}
+				}else{
+					//没有异步校验直接通过
+					allSuccess()
+				};
+			}
+
+			that.clearAjaxQueue();
 		});
 
 		if(options.trigger!=="submit"){
@@ -71,6 +130,7 @@ var vaildation={
 				result=false;
 			};
 		}
+		if(!rules) that.clearAjaxQueue();
 		return result;
 	},
 	vaildItem: function($elem,rules,options){
@@ -82,6 +142,16 @@ var vaildation={
 				var value=$elem.val();
 				//文本框校验
 				for(var ruleName in rules){
+					if(ruleName == "ajax"){
+						var ajaxVaildObject={
+							selector:　$elem.selector,
+							dataname: $elem.attr("name"),
+							value: $.trim($elem.val()),
+							url: rules[ruleName].url,
+							errorMsg: rules[ruleName].errorMsg
+						};
+						that.ajaxQueue.push(ajaxVaildObject); 
+					};
 					if(ruleName in that._rules){
 						if(!that._rules[ruleName]($elem,value,that.getArg(rules,ruleName),rules[ruleName]['maxLength'])){
 							that.showError(ruleName,options,$elem,rules,ruleName);
@@ -163,8 +233,9 @@ var vaildation={
 		rangeLength: "%s字符长度范围为 %s - %s!",
 		rangeDate: "开始日期不能小于结束日期!"
 	},
-	showError: function(type,options,$elem,rules,ruleName){
-		var that=this,rule=rules[ruleName]
+	showError: function(type,options,$elem,rules,ruleName,msg){
+		var that=this;
+		if(rules && ruleName) rule=rules[ruleName];
 		switch(type){
 			case 'rangeLength':
 				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : ''),rule.minLength,rule.maxLength),'form-item-explain-error');
@@ -175,6 +246,10 @@ var vaildation={
 				break;
 			case 'regExp':
 				that.createExplain($elem,rule.errorMsg,'form-item-explain-error');
+				break;
+			case 'ajax':
+				console.log($elem);
+				that.createExplain($elem,msg,'form-item-explain-error');
 				break;
 			default:
 				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : '')),'form-item-explain-error');
@@ -201,11 +276,15 @@ var vaildation={
 		}
 		$explain.attr("error-from",$elem.attr("name")).html(msg);
 	},
+	clearAjaxQueue: function(){
+		this.ajaxQueue=[];
+	},
 	formatMsg: function(text){
 		var args = Array.prototype.slice.apply(arguments, [1]);
     for(var i = 0, j = args.length; i < j; i++){
       text = text.replace("%s", args[i]);
     }
     return text;
-	}
+	},
+	ajaxQueue: []
 };
