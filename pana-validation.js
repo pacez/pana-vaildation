@@ -83,8 +83,8 @@ var vaildation={
 				//文本框校验
 				for(var ruleName in rules){
 					if(ruleName in that._rules){
-						if(!that._rules[ruleName]($elem,value,that.getArg(rules[ruleName]),rules[ruleName]['maxLength'])){
-							that.showError(ruleName,options,$elem,rules[ruleName]);
+						if(!that._rules[ruleName]($elem,value,that.getArg(rules,ruleName),rules[ruleName]['maxLength'])){
+							that.showError(ruleName,options,$elem,rules,ruleName);
 							return false;
 						};
 
@@ -96,8 +96,8 @@ var vaildation={
 				//selected,checkbox,radio校验 (只校验必选)
 				for(var ruleName in rules){
 					if(ruleName==="required"){
-						if(!that._rules[ruleName]($elem,value,that.getArg(rules[ruleName]),rules[ruleName]['maxLength'])){
-							that.showError(ruleName,options,$elem,rules[ruleName]);
+						if(!that._rules[ruleName]($elem,value,that.getArg(rules,ruleName),rules[ruleName]['maxLength'])){
+							that.showError(ruleName,options,$elem,rules,ruleName);
 							return false;
 						}
 						that.clearExplain($elem);
@@ -108,7 +108,10 @@ var vaildation={
 
 		return true;
 	},
-	getArg:function(rule){
+	getArg:function(rules,ruleName){
+		var rule=rules[ruleName];
+		if(ruleName === "regExp") return rule.exp;
+		if(typeof rule === "number") return rule;
 		if(rule.len || rule.len==0) return rule.len;
 		if(rule.minLength || rule.minLength==0) return rule.minLength;
 		if(rule.regExp) return rule.regExp;
@@ -133,15 +136,15 @@ var vaildation={
 		idCard: function($elem,value) { return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value) || !this.required($elem,value)},
 		minLength: function($elem,value,len) {
 			var str=$.trim(value).toString(); 
-			return str.length > len 
+			return str.length > len || !this.required($elem,value)
 		},
 		maxLength: function($elem,value,len) {
 			var str=$.trim(value).toString(); 
-			return str.length < len 
+			return str.length < len || !this.required($elem,value)
 		},
 		rangeLength: function($elem,value,minLength,maxLength) {
 			var len=$.trim(value).toString().length; 
-			return (len >= minLength && len <= maxLength);
+			return ((len >= minLength && len <= maxLength) || !this.required($elem,value));
 		},
 		rangeDate:　function($elem,start,end) { return parseInt(start,10) <= parseInt(end,10); },
 		regExp: function($elem,value,regExp) { return regExp.test(value)}
@@ -160,17 +163,18 @@ var vaildation={
 		rangeLength: "%s字符长度范围为 %s - %s!",
 		rangeDate: "开始日期不能小于结束日期!"
 	},
-	showError: function(type,options,$elem,rule){
-		var that=this;
+	showError: function(type,options,$elem,rules,ruleName){
+		var that=this,rule=rules[ruleName]
 		switch(type){
 			case 'rangeLength':
 				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : ''),rule.minLength,rule.maxLength),'form-item-explain-error');
 				break;
 			case 'minLength':
-				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : ''),rule.minLength),'form-item-explain-error');
-				break;
 			case 'maxLength':
-				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : ''),rule.maxLength),'form-item-explain-error');
+				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : ''),rule),'form-item-explain-error');
+				break;
+			case 'regExp':
+				that.createExplain($elem,rule.errorMsg,'form-item-explain-error');
 				break;
 			default:
 				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : '')),'form-item-explain-error');

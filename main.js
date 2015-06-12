@@ -7,7 +7,7 @@ $(function(){
         },
         rules: [
             {
-                selector: 'input[name="realName"]',
+                selector: 'input[name="rangeLength"]',
                 rule: {
                     rangeLength: {
                         minLength: 1,
@@ -16,23 +16,15 @@ $(function(){
                 }
             },
             {
-                selector: 'input[name="sexy"]',
+                selector: 'input[name="minLength"]',
                 rule: {
-                    required: true
+                    minLength: 6
                 }
             },
             {
-                selector: 'input[name="idCard"]',
+                selector: 'input[name="maxLength"]',
                 rule: {
-                    required: true,
-                    idCard: true
-                }
-            },
-            {
-                selector: 'input[name="email"]',
-                rule:　{
-                    required: true,
-                    email: true
+                    maxLength: 2
                 }
             },
             {
@@ -60,16 +52,61 @@ $(function(){
                 }
             },
             {
-                selector: 'input[name="birthday"]',
+                selector: 'input[name="date"]',
                 rule: {
                     required: true,
                     dateISO: true
                 }
             },
             {
-                selector: 'input[name="hasBaby"]',
+                selector: 'input[name="sexy"]',
                 rule: {
                     required: true
+                }
+            },
+            {
+                selector: 'input[name="domain"]',
+                rule: {
+                    required: true
+                }
+            },
+            {
+                selector: 'input[name="email"]',
+                rule: {
+                    email: true
+                }
+            },
+            {
+                selector: 'input[name="idCard"]',
+                rule: {
+                    idCard: true
+                }
+            },
+            {
+                selector: 'input[name="url"]',
+                rule: {
+                    url: true
+                }
+            },
+            {
+                selector: 'input[name="number"]',
+                rule: {
+                    number: true
+                }
+            },
+            {
+                selector: 'input[name="digits"]',
+                rule: {
+                    digits: true
+                }
+            },
+            {
+                selector: 'input[name="regExp"]',
+                rule: {
+                    regExp: {
+                        exp: /^[0-9]*$/,
+                        errorMsg: '此处正则只能匹配数字!'
+                    }
                 }
             }
         ]

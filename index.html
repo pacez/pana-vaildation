@@ -15,66 +15,100 @@
 			<table class="panel-grid-table">
 				<tbody>
 					<tr class="panel-grid-row">
-						<th class="panel-grid-field">*真实姓名:</th>
+						<th class="panel-grid-field">rangeLength:</th>
 						<td class="panel-grid-value form-item">
-                            <div class="panel-grid-input-container"><input type="text" data-name="真实姓名" name="realName" class="panel-grid-input"  /></div>
-                        </td>
+	              <div class="panel-grid-input-container"><input type="text" data-name="rangeLength" name="rangeLength" class="panel-grid-input"  /></div>
+	          </td>
 					</tr>
 					<tr class="panel-grid-row">
-						<th class="panel-grid-field">*性别:</th>
+						<th class="panel-grid-field">minLength:</th>
+						<td class="panel-grid-value form-item">
+	              <div class="panel-grid-input-container"><input type="text" data-name="minLength" name="minLength" class="panel-grid-input"  /></div>
+	          </td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">maxLength:</th>
+						<td class="panel-grid-value form-item">
+	              <div class="panel-grid-input-container"><input type="text" data-name="maxLength" name="maxLength" class="panel-grid-input"  /></div>
+	          </td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">regExp:</th>
+						<td class="panel-grid-value form-item">
+	              <div class="panel-grid-input-container"><input type="text" data-name="regExp" name="regExp" class="panel-grid-input"  /></div>
+	          </td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*sexy:</th>
 						<td class="panel-grid-value form-item">
 							<label class="panel-grid-radio">
-								<input name="sexy" data-name="性别" type="radio" value="man"  />
-								<span class="panel-grid-radio-label">男</span>
+								<input name="sexy" data-name="radio" type="radio" value="man"  />
+								<span class="panel-grid-radio-label">boy</span>
 							</label>
 							<label class="panel-grid-radio">
 								<input name="sexy" type="radio" value="woman"  />
-								<span class="panel-grid-radio-label">女</span>
+								<span class="panel-grid-radio-label">girl</span>
 							</label>
 						</td>
 					</tr>
 					<tr class="panel-grid-row">
-						<th class="panel-grid-field">*身份证号:</th>
+						<th class="panel-grid-field">*idCard:</th>
 						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="idCard" data-name="身份证号" type="text" class="panel-grid-input"  /></div></td>
 					</tr>
 					<tr class="panel-grid-row">
-						<th class="panel-grid-field">*Email邮箱:</th>
+						<th class="panel-grid-field">*email:</th>
 						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="email" data-name="邮箱" type="text" class="panel-grid-input"  /></div></td>
 					</tr>
 					<tr class="panel-grid-row">
 						<th class="panel-grid-field">*收货地址:</th>
 						<td class="panel-grid-value form-item">
-                            <select name="state" data-name="省份">
-                                <option value="unselected">请选择城市</option>
-                                <option value="cd">四川</option>
-                            </select>
-                            <select name="city" data-name="城市">
-                                <option value="unselected">请选择城市</option>
-                                <option value="cd">成都</option>
-                            </select>
-                            <div class="panel-grid-input-container">
-                                <input type="text" name="address" data-name="收货地址" class="panel-grid-input"  />
-                            </div>
-                        </td>
+                <select name="state" data-name="省份">
+                    <option value="unselected">请选择城市</option>
+                    <option value="cd">四川</option>
+                </select>
+                <select name="city" data-name="城市">
+                    <option value="unselected">请选择城市</option>
+                    <option value="cd">成都</option>
+                </select>
+                <div class="panel-grid-input-container">
+                    <input type="text" name="address" data-name="收货地址" class="panel-grid-input"  />
+                </div>
+            </td>
 					</tr>
 					<tr class="panel-grid-row">
-						<th class="panel-grid-field">邮编:</th>
+						<th class="panel-grid-field">zip code:</th>
 						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="zipCode" data-name="邮编" type="text" class="panel-grid-input"  /></div></td>
 					</tr>
 					<tr class="panel-grid-row">
-						<th class="panel-grid-field">*宝贝生日(或预产期):</th>
+						<th class="panel-grid-field">digits:</th>
+						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="digits" data-name="digits" type="text" class="panel-grid-input"  /></div></td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">number:</th>
+						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="number" data-name="number" type="text" class="panel-grid-input"  /></div></td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">url:</th>
+						<td class="panel-grid-value form-item"><div class="panel-grid-input-container"><input name="url" data-name="url" type="text" class="panel-grid-input"  /></div></td>
+					</tr>
+					<tr class="panel-grid-row">
+						<th class="panel-grid-field">*date:</th>
 						<td class="panel-grid-value form-item">
-						    <div class="panel-grid-input-container"><input type="text" data-name="宝贝生日(或预产期)" name="birthday" class="panel-grid-input"  /></div>
+						    <div class="panel-grid-input-container"><input type="text" data-name="date" name="date" class="panel-grid-input"  /></div>
 						    <label class="panel-grid-checkboxs">
-                                <input name="hasBaby" data-name="是否有宝宝" value=""  type="checkbox" />
-                                <span class="panel-grid-checkboxs-label"> *暂无宝宝</span>
-                            </label>    
+                    <input name="domain" data-name="domain" value=""  type="checkbox" />
+                    <span class="panel-grid-checkboxs-label"> *you.jd.com</span>
+                </label>    
+                <label class="panel-grid-checkboxs">
+                    <input name="domain" data-name="domain" value=""  type="checkbox" />
+                    <span class="panel-grid-checkboxs-label"> *jd.com</span>
+                </label>    
 						</td>
 					</tr>
-                    <tr>
-                        <th></th>
-                        <td><input type="submit" value="提交"/></td>
-                    </tr>
+          <tr>
+              <th></th>
+              <td><input type="submit" value="submit"/></td>
+          </tr>
 				</tbody>
 			</table>
         </form>
