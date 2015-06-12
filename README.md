@@ -7,6 +7,8 @@ validation framework for you.jd.com
 /*
 【集成到libra后的依赖关系描述】: jquery, constant(error msg会放在此处), site(异步校验接口来源) 
  Tips: 目前checkbox,radio,select仅支持required校验。有更多校验场景时，请提出你的需求。
+ 校验器目前支持类型：
+ required,minLength,maxLength,rangeLength,regExp(自定义正则),idCard,zipCode,email,digits,number,url,dateISO
 */
 vaildation.init({
         formId: 'form1',
