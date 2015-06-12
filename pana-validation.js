@@ -69,7 +69,7 @@ var vaildation={
 									}
 								}else{
 									//校验失败
-									that.showError('ajax',options,$elem,"form-item-explain-error",undefined,"校验失败");
+								that.showError('ajax',options,$(this.elem),"form-item-explain-error",undefined,$(this.elem).data('name')+"校验失败");
 								}
 							},
 							error: function(){
