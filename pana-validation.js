@@ -58,12 +58,24 @@ var vaildation={
 									}
 								}else{
 									//校验失败
-								that.showError('ajax',options,$(this.elem),"form-item-explain-error",undefined,$(this.elem).data('name')+"校验失败");
+									$elem=$("#"+options.formId+" "+this.elem);
+									that.showError({
+										type: 'ajax',
+										options: options,
+										elem: $elem,
+										msg: $elem.data('name')+"校验失败"
+									});
 								}
 							},
 							error: function(){
 								//校验失败
-								that.showError('ajax',options,$(this.elem),"form-item-explain-error",undefined,$(this.elem).data('name')+"校验失败");
+								$elem=$("#"+options.formId+" "+this.elem);
+								that.showError({
+									type: 'ajax',
+									options: options,
+									elem: $elem,
+									msg: $elem.data('name')+"校验失败"
+								});
 							}
 						})
 
@@ -143,7 +155,12 @@ var vaildation={
 					};
 					if(ruleName in that._rules){
 						if(!that._rules[ruleName]($elem,value,that.getArg(rules,ruleName),rules[ruleName]['maxLength'])){
-							that.showError(ruleName,options,$elem,rules,ruleName);
+							that.showError({
+								type: ruleName,
+								options: options,
+								elem: $elem,
+								rules: rules
+							});
 							return false;
 						};
 
@@ -156,7 +173,12 @@ var vaildation={
 				for(var ruleName in rules){
 					if(ruleName==="required"){
 						if(!that._rules[ruleName]($elem,value,that.getArg(rules,ruleName),rules[ruleName]['maxLength'])){
-							that.showError(ruleName,options,$elem,rules,ruleName);
+							that.showError({
+								type: ruleName,
+								options: options,
+								elem: $elem,
+								rules: rules
+							});
 							return false;
 						}
 						that.clearExplain($elem);
@@ -222,9 +244,15 @@ var vaildation={
 		rangeLength: "%s字符长度范围为 %s - %s!",
 		rangeDate: "开始日期不能小于结束日期!"
 	},
-	showError: function(type,options,$elem,rules,ruleName,msg){
-		var that=this;
-		if(rules && ruleName) rule=rules[ruleName];
+	showError: function(config){
+		var that=this,
+				type=config.type,
+				options=config.options,
+				$elem=config.elem,
+				rules=config.rules
+				msg=config.msg;
+
+		if(rules && type) rule=rules[type];
 		switch(type){
 			case 'rangeLength':
 				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : ''),rule.minLength,rule.maxLength),'form-item-explain-error');
