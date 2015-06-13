@@ -35,11 +35,12 @@ var vaildation={
 				}
 			}
 
+
 			if(that.validForm(rules,options)){
-				var ajaxQueue=that.ajaxQueue;
+				var ajaxQueue=that.ajaxQueue,
+						ajaxCount=ajaxQueue.length;
 				//是否存在异步校验队列
 				if(ajaxQueue.length>0){
-					var ajaxCount=ajaxQueue.length;
 					for(var i=0; i<ajaxCount; i++){
 						var data={},$elem=$(ajaxQueue[i]['selector']);
 						data[ajaxQueue[i].dataname]=ajaxQueue[i].value;
@@ -236,7 +237,6 @@ var vaildation={
 				that.createExplain($elem,rule.errorMsg,'form-item-explain-error');
 				break;
 			case 'ajax':
-				console.log($elem);
 				that.createExplain($elem,msg,'form-item-explain-error');
 				break;
 			default:

@@ -3,7 +3,7 @@ $(function(){
         formId: 'form1',
         submit: false,
         success: function(){
-            
+          console.log('success');  
         },
         rules: [
             {
