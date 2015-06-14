@@ -44,7 +44,6 @@ var vaildation={
 					for(var i=0; i<ajaxCount; i++){
 						var data={},$elem=$(ajaxQueue[i]['selector']);
 						data[ajaxQueue[i].dataname]=ajaxQueue[i].value;
-						$elem.addClass("checking");
 
 						$.ajax({
 							elem: ajaxQueue[i]['selector'],
@@ -65,6 +64,9 @@ var vaildation={
 										elem: $elem,
 										msg: $elem.data('name')+"校验失败"
 									});
+									if(typeof options.error==="function"){
+										options.error($elem);
+									}
 								}
 							},
 							error: function(){
@@ -76,6 +78,9 @@ var vaildation={
 									elem: $elem,
 									msg: $elem.data('name')+"校验失败"
 								});
+								if(typeof options.error==="function"){
+									options.error($elem);
+								}
 							}
 						})
 
@@ -161,6 +166,9 @@ var vaildation={
 								elem: $elem,
 								rules: rules
 							});
+							if(typeof options.error==="function"){
+								options.error($elem);
+							}
 							return false;
 						};
 
@@ -179,6 +187,9 @@ var vaildation={
 								elem: $elem,
 								rules: rules
 							});
+							if(typeof options.error==="function"){
+								options.error($elem);
+							}
 							return false;
 						}
 						that.clearExplain($elem);

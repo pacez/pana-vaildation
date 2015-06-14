@@ -19,6 +19,10 @@ vaildation.init({
         success: function(){
             //所有校验规则通过的回调.
         },
+        error: function($elem){
+            //校验出错回调.
+            //$elem出错的jquery dom对象.
+        },
         rules: [
             {
                 selector: 'input[name="rangeLength"]',

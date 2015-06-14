@@ -5,6 +5,9 @@ $(function(){
         success: function(){
           console.log('success');  
         },
+        error: function($elem) {
+            console.log($elem.attr("name")+":error");
+        },
         rules: [
             {
                 selector: 'input[name="rangeLength"]',
