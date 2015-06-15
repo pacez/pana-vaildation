@@ -1,0 +1,18 @@
+.pana-accordion {
+	width: 800px;
+	height: 200px;
+	margin: 20px auto;
+	position: relative;
+	overflow: hidden;
+	.pana-accordion-wrap {
+		width: 300%;
+		.pana-accordion-item {
+			width: 100px;
+			height: 200px;
+			float: left;
+			&.active {
+				position: relative;
+			}
+		}
+	}
+}

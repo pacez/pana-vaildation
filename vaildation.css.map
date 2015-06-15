@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,UAAU;EACT,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;;AAEV,KAAM;EACL,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,SAAS;EACjB,kBAAM;IACL,cAAc,EAAE,GAAG;IACnB,WAAW,EAAE,IAAI;;AAOjB,qDAA0B;EACzB,KAAK,EAAE,GAAG",
+"sources": ["vaildation.scss"],
+"names": [],
+"file": "vaildation.css"
+}
