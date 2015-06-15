@@ -49,46 +49,48 @@ var vaildation={
 						data[ajaxQueue[i].dataname]=ajaxQueue[i].value;
 						that.createExplain($elem,options.checkingText,"checking");
 
-						$.ajax({
-							elem: ajaxQueue[i]['selector'],
-							url: ajaxQueue[i].url,
-							data: data,
-							success: function(msg){
-								if(msg.success){
-								 	apijaxTempCount+=1;
-								 	if(ajaxTempCount>=ajaxCount){
-										allSuccess();
+						//使用匿名函数传入索引
+						(function(index){
+							$.ajax({
+								url: ajaxQueue[index].url,
+								data: data,
+								success: function(msg){
+									var $elem=$("#"+options.formId+" "+ajaxQueue[index]['selector']);
+									if(msg.success){
+									 	apijaxTempCount+=1;
+									 	if(ajaxTempCount>=ajaxCount){
+											allSuccess();
+										}
+										that.clearExplain($elem);
+									}else{
+										//校验失败
+										that.showError({
+											type: 'ajax',
+											options: options,
+											elem: $elem,
+											msg: $elem.data('name')+result.errorMsg
+										});
+										if(typeof options.error==="function"){
+											options.error($elem);
+										}
 									}
-									that.clearExplain($("#"+options.formId+" "+this.elem));
-								}else{
+								},
+								error: function(){
 									//校验失败
-									var $elem=$("#"+options.formId+" "+this.elem);
+									var $elem=$("#"+options.formId+" "+ajaxQueue[index]['selector']);
 									that.showError({
 										type: 'ajax',
 										options: options,
 										elem: $elem,
-										msg: $elem.data('name')+result.errorMsg
+										msg: options.msg.netError
 									});
+
 									if(typeof options.error==="function"){
 										options.error($elem);
 									}
 								}
-							},
-							error: function(){
-								//校验失败
-								var $elem=$("#"+options.formId+" "+this.elem);
-								that.showError({
-									type: 'ajax',
-									options: options,
-									elem: $elem,
-									msg: options.msg.netError
-								});
-
-								if(typeof options.error==="function"){
-									options.error($elem);
-								}
-							}
-						})
+							})
+						})(i);
 
 						/* 
 						Site.api.getVaildResult(ajaxQueue[i]['url'],data,
@@ -316,8 +318,9 @@ var vaildation={
 				$explain=$formItem.children(".form-item-explain");
 		if($explain.length==0){
 			$formItem.append('<div error-from="'+$elem.attr("name")+'" class="form-item-explain '+className+'">'+msg+'</div>');
+			return;
 		}
-		$explain.removeClass("checking,form-item-explain-error").addClass(className).attr("error-from",$elem.attr("name")).html(msg);
+		$explain.removeClass().addClass("form-item-explain "+className).attr("error-from",$elem.attr("name")).html(msg);
 	},
 	clearAjaxQueue: function(){
 		this.ajaxQueue=[];
