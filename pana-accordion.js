@@ -1,6 +1,6 @@
 /*
 author: pace zhong
-date: 2015-06-16
+date: 2015-06-15
 desc: banner component for you.jd.com
 */
 var accordion={
@@ -38,8 +38,6 @@ var accordion={
 	autoPlay: function(options){
 		var that=this;
 		that.clearAnimate();
-		var nextPlay=function(){
-		}
 		that.delay=setTimeout(function(){
 			$next=$("#"+options.id).find(".active").next();
 			if($next.length==0) {
