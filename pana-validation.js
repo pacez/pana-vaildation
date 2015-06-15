@@ -160,14 +160,14 @@ var vaildation={
 
 		switch (type){
 			case 'text': 
-				var value=$elem.val();
+				var value=$.trim($elem.val());
 				//文本框校验
 				for(var ruleName in rules){
 					if(ruleName == "ajax"){
 						var ajaxVaildObject={
 							selector:　$elem.selector,
 							dataname: $elem.attr("name"),
-							value: $.trim($elem.val()),
+							value: value,
 							url: rules[ruleName].url,
 							errorMsg: rules[ruleName].errorMsg
 						};

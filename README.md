@@ -23,7 +23,7 @@ vaildation.init({
         },
         error: function($elem){
             //校验出错回调.
-            //$elem出错的jquery dom对象.
+            //$elem:出错的jquery dom对象.
         },
         rules: [
             {
