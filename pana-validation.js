@@ -7,6 +7,7 @@ var vaildation={
 	init: function (options){
 		var that=this;
 		options = $.extend(true,{
+			checkingText:　"checking...",
 			msg: that.msg, //提示信息
 			submit: false //验证通过是否提交表单
 		},options);
@@ -42,8 +43,11 @@ var vaildation={
 				//是否存在异步校验队列
 				if(ajaxQueue.length>0){
 					for(var i=0; i<ajaxCount; i++){
-						var data={},$elem=$(ajaxQueue[i]['selector']);
+						var data={},
+								$elem=$("#"+options.formId+" "+ajaxQueue[i]['selector']);
+
 						data[ajaxQueue[i].dataname]=ajaxQueue[i].value;
+						that.createExplain($elem,options.checkingText,"checking");
 
 						$.ajax({
 							elem: ajaxQueue[i]['selector'],
@@ -55,14 +59,15 @@ var vaildation={
 								 	if(ajaxTempCount>=ajaxCount){
 										allSuccess();
 									}
+									that.clearExplain($("#"+options.formId+" "+this.elem));
 								}else{
 									//校验失败
-									$elem=$("#"+options.formId+" "+this.elem);
+									var $elem=$("#"+options.formId+" "+this.elem);
 									that.showError({
 										type: 'ajax',
 										options: options,
 										elem: $elem,
-										msg: $elem.data('name')+"校验失败"
+										msg: $elem.data('name')+result.errorMsg
 									});
 									if(typeof options.error==="function"){
 										options.error($elem);
@@ -71,13 +76,14 @@ var vaildation={
 							},
 							error: function(){
 								//校验失败
-								$elem=$("#"+options.formId+" "+this.elem);
+								var $elem=$("#"+options.formId+" "+this.elem);
 								that.showError({
 									type: 'ajax',
 									options: options,
 									elem: $elem,
-									msg: $elem.data('name')+"校验失败"
+									msg: options.msg.netError
 								});
+
 								if(typeof options.error==="function"){
 									options.error($elem);
 								}
@@ -253,7 +259,8 @@ var vaildation={
 		minLength: "%s最小长度为%s!",
 		maxLength: "%s最大长度为%s!",
 		rangeLength: "%s字符长度范围为 %s - %s!",
-		rangeDate: "开始日期不能小于结束日期!"
+		rangeDate: "开始日期不能小于结束日期!",
+		netError: "网络异常，请稍后再试!"
 	},
 	showError: function(config){
 		var that=this,
@@ -301,7 +308,7 @@ var vaildation={
 		if($explain.length==0){
 			$formItem.append('<div error-from="'+$elem.attr("name")+'" class="form-item-explain '+className+'">'+msg+'</div>');
 		}
-		$explain.attr("error-from",$elem.attr("name")).html(msg);
+		$explain.removeClass("checking,form-item-explain-error").addClass(className).attr("error-from",$elem.attr("name")).html(msg);
 	},
 	clearAjaxQueue: function(){
 		this.ajaxQueue=[];

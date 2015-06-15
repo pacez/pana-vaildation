@@ -3,10 +3,8 @@ $(function(){
         formId: 'form1',
         submit: false,
         success: function(){
-          console.log('success');  
         },
         error: function($elem) {
-            console.log($elem.attr("name")+":error");
         },
         rules: [
             {
