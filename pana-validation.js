@@ -97,15 +97,24 @@ var vaildation={
 								 	apijaxTempCount+=1;
 								 	if(ajaxTempCount>=ajaxCount){
 										allSuccess();
+										//clear checking text
 									}
 								}else{
-									//中断
-									that.showError($elem,"校验失败","form-item-explain-error");
+									that.showError({
+										type: 'ajax',
+										options: options,
+										elem: $elem,
+										msg: options.msg.netError
+									});
 								}
 						 	},
 						 	error: function(data, xhr, textStatus, errorThrown, btnHelper){
-						 		//校验失败，抛出错误
-								that.showError($elem,"校验失败","form-item-explain-error");
+								that.showError({
+									type: 'ajax',
+									options: options,
+									elem: $elem,
+									msg: options.msg.netError
+								});
 						 	}
 		        }
 		        */
@@ -267,7 +276,7 @@ var vaildation={
 				type=config.type,
 				options=config.options,
 				$elem=config.elem,
-				rules=config.rules
+				rules=config.rules,
 				msg=config.msg;
 
 		if(rules && type) rule=rules[type];

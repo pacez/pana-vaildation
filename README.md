@@ -8,7 +8,8 @@ validation framework for you.jd.com
 【集成到libra后的依赖关系描述】: jquery, constant(error msg会放在此处), site(异步校验接口来源) 
  Tips: 
  1. 目前checkbox,radio,select仅支持required校验。有更多校验场景时，请提出你的需求。
- 2. 静态数据校验通过后会进行异步校验，考虑到submit时会对整个表单触发校验，异步校验仅通过submit触发。
+ 2. select元素，约定未选中的值为unselected. 
+ 3. 静态数据校验通过后会进行异步校验，考虑到submit时会对整个表单触发校验，异步校验仅通过submit触发。
  校验器目前支持类型：
  ajax,required,minLength,maxLength,rangeLength,regExp(自定义正则),idCard,zipCode,email,digits,number,url,dateISO
 */
