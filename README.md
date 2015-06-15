@@ -15,7 +15,7 @@ validation framework for you.jd.com
 */
 vaildation.init({
         formId: 'form1',
-        checkingText:　"checking...", 异步校验时的提示信息，缺省值: checking...
+        checkingText:　"checking...", //异步校验时的提示信息，缺省值: checking...
         trigger: 'change', //缺省值为change,可选值为submit,submit时仅通过提交按钮触发校验
         submit: false, // 表单静态数据校验成功，是否提交。
         success: function(){
