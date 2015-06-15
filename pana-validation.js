@@ -17,7 +17,6 @@ var vaildation={
 		}
 
 		that.bindValidation(options);
-
 	},
 	bindValidation: function(options){
 		var that=this,
@@ -144,7 +143,6 @@ var vaildation={
 		$elem.on(trigger,function(){
 			that.vaildItem($elem,rules,options);
 		});
-
 	},
 	validForm: function(rules,options){
 		var that=this,result=true
@@ -299,8 +297,7 @@ var vaildation={
 			default:
 				that.createExplain($elem,that.formatMsg(options.msg[type],($elem.data("name") ? $elem.data("name") : '')),'form-item-explain-error');
 				return
-		}
-		
+		}		
 	},
 	clearExplain: function($elem){
 		var $explain=$elem.closest(".form-item").children(".form-item-explain");
