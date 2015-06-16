@@ -9,10 +9,9 @@
 		.pana-accordion-item {
 			width: 100px;
 			height: 200px;
+			overflow: hidden;
 			float: left;
-			&.active {
-				position: relative;
-			}
+			position: relative;
 		}
 	}
 }

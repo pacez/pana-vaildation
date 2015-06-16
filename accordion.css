@@ -9,8 +9,8 @@
     .pana-accordion .pana-accordion-wrap .pana-accordion-item {
       width: 100px;
       height: 200px;
-      float: left; }
-      .pana-accordion .pana-accordion-wrap .pana-accordion-item.active {
-        position: relative; }
+      overflow: hidden;
+      float: left;
+      position: relative; }
 
 /*# sourceMappingURL=accordion.css.map */

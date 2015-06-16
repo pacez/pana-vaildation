@@ -56,10 +56,8 @@ var accordion={
 				$items=$("#"+options.id+" .pana-accordion-item"),
 				$active=$current.closest(".pana-accordion").find(".active");
 
-		$items.css("z-index",'2');
-
-
-		$current.next().css("z-index",'1');
+		$items.css("z-index",'1');
+		$current.next().css("z-index",'2');
 		if(that.isRestart($current,$active,$items)){
 			var animateParam={"width":options.itemWidth+"px"}
 		}else{
@@ -68,7 +66,7 @@ var accordion={
 		$active.stop().animate(animateParam,options.animate,function(){
 			$active.removeClass('active');
 			if(!that.isRestart($current,$active,$items)){
-				$active.animate({"margin-left":0},'100');
+				$active.animate({"margin-left":0},'50');
 			}
 		});
 
@@ -77,7 +75,7 @@ var accordion={
 			animateParam["margin-left"]=options.bounce;
 			$next.stop().animate(animateParam,options.animate,function(){
 				$next.removeClass('active');
-				$next.animate({"margin-left":0},'100');
+				$next.animate({"margin-left":0},'50');
 			});
 		}
 
