@@ -5,12 +5,17 @@
   position: relative;
   overflow: hidden; }
   .pana-accordion .pana-accordion-wrap {
+    margin-left: -1px;
+    position: relative;
     width: 300%; }
     .pana-accordion .pana-accordion-wrap .pana-accordion-item {
+      border-left: 1px solid #BABABA;
       width: 100px;
       height: 200px;
       overflow: hidden;
       float: left;
-      position: relative; }
+      position: absolute;
+      left: 0;
+      top: 0; }
 
 /*# sourceMappingURL=accordion.css.map */

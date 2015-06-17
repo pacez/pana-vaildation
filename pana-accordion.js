@@ -9,13 +9,13 @@ var accordion={
 		options = $.extend(true,{
 			expandWidth: 500,
 			itemWidth: 100,
-			extpand: 0,
+			extpand: 1,
 			autoPlay: true,
 			delay: 3000,
 			animateTime: 300,
 			bounce:"-50px"
 		},options);
-		that.setExpand(options);
+		that.initDom(options);
 		that.autoPlay(options);
 		that.event(options);
 	},
@@ -24,8 +24,7 @@ var accordion={
 				$items=$("#"+options.id).find(".pana-accordion-item");
 		$items.on("mouseover",function(){
 			that.clearAnimate();
-			var $this=$(this);
-			that.active($this,options);
+			that.active(options,$(this));
 		});
 		$items.on("mouseout",function(){
 			that.autoPlay(options);
@@ -44,60 +43,56 @@ var accordion={
 			if($next.length==0) {
 				$next=$("#"+options.id).find(".pana-accordion-item:eq(0)");
 			}
-			that.active($next,options);
+			that.active(options,$next);
 			that.autoPlay(options);
 		},options.delay);
 	},
-	active: function($current,options){
-		if($current.hasClass('active')) return;
+	active: function(options,$current){
+		if($current && $current.hasClass('active')) return;
 
+		var $items=$("#"+options.id).find(".pana-accordion-item"),
+				currentIndex=$current.index();
+				itemWidth=options.itemWidth,
+				expandWidth=options.expandWidth;
 
-		var that=this,
-				$items=$("#"+options.id+" .pana-accordion-item"),
-				$active=$current.closest(".pana-accordion").find(".active");
+		$items.removeClass("active");
+		$items.each(function(i,elem){
+			var $item=$(elem),
+					pos_left=(i==0 ? 0 : i*itemWidth );
 
-		$items.css("z-index",'1');
-		$current.next().css("z-index",'2');
-		if(that.isRestart($current,$active,$items)){
-			var animateParam={"width":options.itemWidth+"px"}
-		}else{
-			var animateParam={"width":options.itemWidth+"px","margin-left":options.bounce}
-		}
-		$active.stop().animate(animateParam,options.animate,function(){
-			$active.removeClass('active');
-			if(!that.isRestart($current,$active,$items)){
-				$active.animate({"margin-left":0},'50');
+			if(i>currentIndex){
+				pos_left+=expandWidth-itemWidth;
+			}
+
+			if(i==currentIndex){
+				$item.addClass('active').stop(true).animate({
+					"width": options.expandWidth+"px",
+					"left": pos_left
+				},options.animateTime);
+			}else{
+				$item.stop(true).animate({
+					"left": pos_left
+				},options.animateTime);
 			}
 		});
-
-		if(that.isRestart($current,$active,$items)){
-			var $next=$current.next();
-			animateParam["margin-left"]=options.bounce;
-			$next.stop().animate(animateParam,options.animate,function(){
-				$next.removeClass('active');
-				$next.animate({"margin-left":0},'50');
-			});
-		}
-
-		$current.addClass('active').stop().animate({
-			"width": options.expandWidth+"px",
-		},options.animateTime);
-
 	},
 	isRestart:function($current,$active,$items){
 		return $active.index()===$items.length-1 && $current.index()===0
 	},
-	setExpand: function(options){
-		var $item=$("#"+options.id).find(".pana-accordion-item:eq("+options.extpand+")");
-		$item.addClass('active').animate({
-			"width": options.expandWidth+"px",
-		},options.animateTime);
+	initDom: function(options){
+		var that=this,
+				$items=$("#"+options.id).find(".pana-accordion-item");
 
+		$items.each(function(i,elem){
+			$(elem).css("z-index",i+1);
+		})
+		that.active(options,$items.eq(options.extpand));
 	}
 }
 
 $(function(){
 	accordion.init({
-		id: 'accordion'
+		id: 'accordion',
+		extpand: 0
 	});
 });
