@@ -58,6 +58,7 @@ var accordion={
 		$items.removeClass("active");
 		$items.each(function(i,elem){
 			var $item=$(elem),
+					$next=$current.next().length==0 ? $($items[1]) : $current.next(),
 					pos_left=(i==0 ? 0 : i*itemWidth );
 
 			if(i>currentIndex){
@@ -84,7 +85,9 @@ var accordion={
 				$items=$("#"+options.id).find(".pana-accordion-item");
 
 		$items.each(function(i,elem){
-			$(elem).css("z-index",i+1);
+			$item=$(elem);
+			$item.css("z-index",i+1);
+			$item.append('<div class="pana-accordion-mask"></div>');
 		})
 		that.active(options,$items.eq(options.extpand));
 	}
