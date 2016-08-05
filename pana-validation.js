@@ -1,7 +1,7 @@
 /*
 author: pace zhong
 date: 2015-06-10
-desc: validation framework for you.jd.com
+desc: validation framework 
 */
 var vaildation={ 
 	init: function (options){
